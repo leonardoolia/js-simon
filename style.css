@@ -1,0 +1,22 @@
+/* Generals */
+.container {
+    height: 100vh;
+    background-color: aquamarine;
+}
+
+
+/* Sezione gioco */
+#timer,
+#numeri>* {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#numeri {
+    display: flex;
+}
