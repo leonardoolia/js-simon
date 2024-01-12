@@ -105,6 +105,7 @@ const startGame = () => {
 const exitGame = () => {
     startButton.classList.remove('d-none');
     gameSection.classList.add('d-none');
+    screenNumbers.innerText = '';
 }
 
 
