@@ -76,18 +76,17 @@ const startGame = () => {
 
 
     // GENERO 5 NUMERI CASUALI DA 1 A 99
-    const randomNumbers = generateRandomNumbers(min, max);
+    const randomNumbers = generateRandomNumbers(min, max); //! userò questi per fare il confronto perchè sono un array
 
 
+    // CREO LE CELLE DA METTERE IN PAGINA
+    const screenCells = document.createElement('div');
 
-
+    let stringa = randomNumbers.join(' ');
 
     // AGGIUNGO I 5 NUMERI AI DIV IN PAGINA
-    for (let i = 1; i <= cells; i++) {
-        screenNumbers.innerText = randomNumbers;
-    }
-
-
+    screenCells.innerHTML = stringa;
+    screenNumbers.appendChild(screenCells);
 
 }
 
