@@ -46,9 +46,13 @@ const startGame = () => {
             listOfNumbers.length < cells
         )
 
-        console.log(listOfNumbers)
+        console.log(listOfNumbers);
 
-    }
+
+        return listOfNumbers;
+    };
+
+
 
 
 
@@ -73,6 +77,15 @@ const startGame = () => {
 
     // GENERO 5 NUMERI CASUALI DA 1 A 99
     const randomNumbers = generateRandomNumbers(min, max);
+
+
+
+
+
+    // AGGIUNGO I 5 NUMERI AI DIV IN PAGINA
+    for (let i = 1; i <= cells; i++) {
+        screenNumbers.innerText = randomNumbers;
+    }
 
 
 
