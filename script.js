@@ -9,7 +9,7 @@ const startAgainButton = document.getElementById('play-again-button')
 // Sezione con timer e numeri
 const gameSection = document.getElementById('sezione-gioco');
 const screenTimer = document.getElementById('timer');
-const screenText = document.getElementById('testo-numeri');
+let screenText = document.getElementById('testo-numeri');
 const screenNumbers = document.getElementById('numeri');
 
 // Range numeri casuali
@@ -64,10 +64,41 @@ const startGame = () => {
     const timer = setInterval(() => {
         screenTimer.innerText = --secondsLeft;
 
-        // Quando il timer arriva a 0, interrompiamo il countdown
+        // Quando il timer arriva a 0...
         if (secondsLeft === 0) {
+
+            // Interrompo il countdown
             clearInterval(timer);
+
+            // Compare la scritta via
             screenTimer.innerText = 'VIA!';
+
+            // Scompaiono i numeri
+            screenCell.classList.add('d-none');
+
+            // Cambia la scritta sopra i numeri
+            screenText.innerText = 'Indovina i numeri';
+
+            // Compare il prompt ritardato di 1 millisecondo
+            setTimeout(() => {
+
+                // Preparo array di numeri scelti dall'utente
+                let userNumbers = [];
+
+                // Chiedo all'utente i numeri
+                while (userNumbers.length < randomNumbers.length) {
+                    let userAnswer = prompt('Quali erano i numeri?');
+
+                    //! Validazione
+                    if (isNaN(userAnswer) || userAnswer < 1 || userAnswer > 99) {
+                        alert('Devi inserire numeri da 1 a 99');
+                    }
+                    else { userNumbers.push(userAnswer); }
+                }
+                console.log(userNumbers);
+            }, 1);
+
+
         };
 
     }, 1000);
@@ -79,14 +110,15 @@ const startGame = () => {
     const randomNumbers = generateRandomNumbers(min, max); //! userò questi per fare il confronto perchè sono un array
 
 
-    // CREO LE CELLE DA METTERE IN PAGINA
-    const screenCells = document.createElement('div');
+    // CREO IL DIV DA INSERIRE NELLA PAGINA
+    const screenCell = document.createElement('div');
 
-    let stringa = randomNumbers.join(' ');
+    // TRASFORMO L'ARRAY DI NUMERI CASUALI IN STRINGA
+    let stringa = randomNumbers.join(', ');
 
-    // AGGIUNGO I 5 NUMERI AI DIV IN PAGINA
-    screenCells.innerHTML = stringa;
-    screenNumbers.appendChild(screenCells);
+    // AGGIUNGO I 5 NUMERI AL DIV IN PAGINA
+    screenCell.innerHTML = stringa;
+    screenNumbers.appendChild(screenCell);
 
 }
 
